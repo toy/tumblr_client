@@ -41,17 +41,17 @@ module Tumblr
     end
 
     def queue(blog_name, options = {})
-      validate_options([:limit, :offset], options)
+      validate_options([:limit, :offset, :filter], options)
       get(blog_path(blog_name, 'posts/queue'), options)
     end
 
     def draft(blog_name, options = {})
-      validate_options([:limit, :offset], options)
+      validate_options([:before_id, :filter], options)
       get(blog_path(blog_name, 'posts/draft'), options)
     end
 
     def submissions(blog_name, options = {})
-      validate_options([:limit, :offset], options)
+      validate_options([:offset, :filter], options)
       get(blog_path(blog_name, 'posts/submission'), options)
     end
 

@@ -163,7 +163,7 @@ describe Tumblr::Blog do
 
     describe type do
 
-      context 'when using parameters other than limit & offset' do
+      context 'when using wrong parameter' do
 
         it 'should raise an error' do
           expect(lambda {
@@ -176,11 +176,11 @@ describe Tumblr::Blog do
       context 'with valid options' do
 
         it 'should construct the call properly' do
-          limit = 5
+          filter = 'text'
           expect(client).to receive(:get).once.with("v2/blog/#{blog_name}/posts/#{ext}", {
-            :limit => limit
+            :filter => filter
           }).and_return('response')
-          r = client.send type, blog_name, :limit => limit
+          r = client.send type, blog_name, :filter => filter
           expect(r).to eq('response')
         end
 
